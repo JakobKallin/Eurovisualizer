@@ -1,28 +1,8 @@
-body { font-family: "Segoe UI", sans-serif }
-select { font-size: 200% }
-
-#mode { margin: 0; padding: 0 }
-
-#legends { position: absolute; left: 10px; bottom: 10px }
-.legend { font-weight: bold; margin: 0; padding: 0; list-style-type: none }
-.legend div { width: 32px; height: 16px; margin-right: 5px; float: left }
-.legend li { line-height: 16px; margin: 5px 0 }
-.legend.roles{ margin-bottom: 25px }
-
-#map { width: 790px; padding: 5px; position: relative }
-svg { width: 100% }
-
-.points-12 { fill: #002a80 !important; background-color: #002a80 !important }
-.points-10 { fill: #0040bf !important; background-color: #0040bf !important }
-.points-8 { fill: #0055ff !important; background-color: #0055ff !important }
-.points-7 { fill: #1966ff !important; background-color: #1966ff !important }
-.points-6 { fill: #3377ff !important; background-color: #3377ff !important }
-.points-5 { fill: #4c88ff !important; background-color: #4c88ff !important }
-.points-4 { fill: #6699ff !important; background-color: #6699ff !important }
-.points-3 { fill: #7faaff !important; background-color: #7faaff !important }
-.points-2 { fill: #99bbff !important; background-color: #99bbff !important }
-.points-1 { fill: #b3ccff !important; background-color: #b3ccff !important }
-.points-0 { }
-.contestant, .donor { fill: #30bf30 !important; background-color: #30bf30 !important }
-.non-contestant { fill: #800080 !important; background-color: #800080 !important }
-.non-participant { fill: #000000 !important; background-color: #000000 !important }
+#map { width: 790px; padding: 5px; position: relative; }
+svg { width: 100%; }
+svg * { fill: none; }
+svg path {
+	fill: #c0c0c0;
+	stroke: #ffffff;
+	stroke-width: 16;
+}
