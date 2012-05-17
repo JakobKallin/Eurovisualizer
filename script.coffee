@@ -61,12 +61,20 @@ class Country extends Batman.Model
 		return this in event.get('donors')
 	click: () ->
 		App.set('selected_country_code', @code)
+	@accessor 'className', () ->
+		if @code == App.get('selected_country_code')
+			'selected'
+		else
+			'non-selected'
 
 bind_country_nodes = () ->
 	for name, country of App.countries
 		node = document.getElementById(country.code)
 		country_path = "countries.#{country.code}"
 		node.setAttribute('data-event-click', "#{country_path}.click")
+		node.setAttribute('data-bind-class', "#{country_path}.className")
+		# Enable binding to the class attribute with this hack.
+		node.__defineSetter__('className', (value) -> @setAttribute('class', value))
 
 unique_countries = (events) ->
 	countries = []

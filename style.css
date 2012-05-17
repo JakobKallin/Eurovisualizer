@@ -1,8 +1,25 @@
 #map { width: 790px; padding: 5px; position: relative; }
 svg { width: 100%; }
 svg * { fill: none; }
+
 svg path {
-	fill: #c0c0c0;
-	stroke: #ffffff;
+	fill: rgb(192, 192, 192);
+	stroke: rgb(255, 255, 255);
 	stroke-width: 16;
+}
+
+path.selected, g.selected path {
+	fill: hsl(120, 60%, 50%);
+}
+
+svg .selected:hover,
+svg .non-selected:hover,
+svg g.selected:hover path,
+svg g.non-selected:hover path {
+	cursor: pointer;
+}
+
+svg .non-selected:hover,
+svg g.non-selected:hover path {
+	opacity: 0.8;
 }
