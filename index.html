@@ -3,12 +3,32 @@
 	<head>
 		<title>Eurovisualizer</title>
 		<link rel="stylesheet" href="style.css">
+		<script src="jquery.js"></script>
 		<script src="batman/batman.js"></script>
 		<script src="batman/coffee-script.js"></script>
 	</head>
 	<body>
 		<div id="container">
 			<h1>Eurovisualizer</h1>
+			
+			<div id="controls">
+				<select data-bind="selected_event_title">
+					<option
+						data-foreach-event="sorted_events"
+						data-bind-value="event.title"
+						data-bind="event.title">
+					</option>
+				</select>
+				<select data-bind="selected_country_name">
+					<option
+						data-foreach-country="sorted_countries"
+						data-bind-value="country.name"
+						data-bind="country.name"
+						data-bind-disabled="country.participates | not">
+					</option>
+				</select>
+			</div>
+			
 			<div id="map">
 				<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="680" height="520" viewBox="1754 161 9938 7945" version="1.0">
 					<metadata>
