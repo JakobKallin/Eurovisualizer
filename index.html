@@ -19,10 +19,10 @@
 						data-bind="event.title">
 					</option>
 				</select>
-				<select data-bind="selected_country_name">
+				<select data-bind="selected_country_code">
 					<option
 						data-foreach-country="sorted_countries"
-						data-bind-value="country.name"
+						data-bind-value="country.code"
 						data-bind="country.name"
 						data-bind-disabled="country.participates | not">
 					</option>

@@ -1,3 +1,52 @@
+country_names = {
+	'al': 'Albania',
+	'ad': 'Andorra',
+	'am': 'Armenia',
+	'at': 'Austria',
+	'az': 'Azerbaijan',
+	'by': 'Belarus',
+	'be': 'Belgium',
+	'ba': 'Bosnia & Herzegovina',
+	'bg': 'Bulgaria',
+	'hr': 'Croatia',
+	'cy': 'Cyprus',
+	'cz': 'Czech Republic',
+	'dk': 'Denmark',
+	'ee': 'Estonia',
+	'mk': 'F.Y.R. Macedonia',
+	'fi': 'Finland',
+	'fr': 'France',
+	'ge': 'Georgia',
+	'de': 'Germany',
+	'gr': 'Greece',
+	'hu': 'Hungary',
+	'is': 'Iceland',
+	'ie': 'Ireland',
+	'il': 'Israel',
+	'it': 'Italy',
+	'lv': 'Latvia',
+	'lt': 'Lithuania',
+	'mt': 'Malta',
+	'md': 'Moldova',
+	'me': 'Montenegro',
+	'no': 'Norway',
+	'pl': 'Poland',
+	'pt': 'Portugal',
+	'ro': 'Romania',
+	'rs': 'Serbia',
+	'ru': 'Russia',
+	'sm': 'San Marino',
+	'sk': 'Slovakia',
+	'si': 'Slovenia',
+	'es': 'Spain',
+	'se': 'Sweden',
+	'ch': 'Switzerland',
+	'nl': 'The Netherlands',
+	'tr': 'Turkey',
+	'ua': 'Ukraine',
+	'gb': 'United Kingdom'
+}
+
 class App extends Batman.App
 	@global yes
 
@@ -5,11 +54,19 @@ class Event extends Batman.Model
 	constructor: (@title, @recipients, @donors, @points) ->
 
 class Country extends Batman.Model
-	constructor: (@name) ->
+	constructor: (@name, @code) ->
 	@accessor 'participates', () ->
 		event_title = App.get('selected_event_title')
 		event = App.get('events')[event_title]
 		return this in event.get('donors')
+	click: () ->
+		App.set('selected_country_code', @code)
+
+bind_country_nodes = () ->
+	for name, country of App.countries
+		node = document.getElementById(country.code)
+		country_path = "countries.#{country.code}"
+		node.setAttribute('data-event-click', "#{country_path}.click")
 
 unique_countries = (events) ->
 	countries = []
@@ -32,11 +89,12 @@ load_events = (signal_events_loaded) ->
 	on_event_loaded = (data) ->
 		title = "#{data.year} Final"
 		final = data.final
-		for name in final.donors
-			countries[name] = new Country(name) unless countries[name]?
+		for code in final.donors
+			name = country_names[code]
+			countries[code] = new Country(name, code) unless countries[code]?
 		
-		recipients = (countries[name] for name in final.recipients)
-		donors = (countries[name] for name in final.donors)
+		recipients = (countries[code] for code in final.recipients)
+		donors = (countries[code] for code in final.donors)
 		
 		event = new Event(title, recipients, donors, final.points)
 		events[title] = event
@@ -55,10 +113,13 @@ on_events_loaded = (events, countries) ->
 	App.set('countries', countries)
 	sorted_countries = unique_countries(events).sort((a, b) -> a.name.localeCompare(b.name))
 	App.set('sorted_countries', sorted_countries)
-	App.set('selected_country_name', sorted_countries[0].name)
+	App.set('selected_country_code', sorted_countries[0].code)
+	
+	bind_country_nodes()
+	
+	App.run()
 
 start = () ->
 	load_events(on_events_loaded)
-	App.run()
 	
 start()
