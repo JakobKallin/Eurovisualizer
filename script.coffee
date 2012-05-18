@@ -83,14 +83,19 @@ class Country extends Batman.Model
 		
 		if this.get('is_selected')
 			classes.push('selected')
-		
-		recipient = App.get('selected').get('country').code
-		event = App.get('selected').get('event')
-		if event.points.to[recipient] and event.points.to[recipient][@code]?
-			point = event.points.to[recipient][@code]
 		else
+			event = App.get('selected').get('event')
+			other_country = App.get('selected').get('country')
 			point = 0
-		classes.push("points-#{point}")
+			
+			switch App.get('selected').get('direction')
+				when 'from'
+					if event.points.from[other_country.code] and event.points.from[other_country.code][@code]?
+						point = event.points.from[other_country.code][@code]
+				else
+					if event.points.to[other_country.code] and event.points.to[other_country.code][@code]?
+						point = event.points.to[other_country.code][@code]
+			classes.push("points-#{point}")
 		
 		return classes.join(' ')
 
@@ -150,6 +155,8 @@ on_events_loaded = (events, countries) ->
 	sorted_countries = unique_countries(events).sort((a, b) -> a.name.localeCompare(b.name))
 	App.set('sorted_countries', sorted_countries)
 	App.set('selected_country_code', sorted_countries[0].code)
+	
+	App.get('selected').set('direction', 'to')
 	
 	bind_country_nodes()
 	

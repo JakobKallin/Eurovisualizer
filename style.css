@@ -8,6 +8,15 @@ select {
 	font-size: 150%;
 }
 
+ul.options {
+	padding-left: 0;
+	list-style-type: none;
+}
+
+label {
+	cursor: pointer;
+}
+
 /* Map */
 
 #map {

@@ -27,6 +27,10 @@
 						data-bind-disabled="country.participates | not">
 					</option>
 				</select>
+				<ul class="options">
+					<li><label><input type="radio" name="direction" value="to" data-bind="selected.direction"> Points to <span data-bind="selected.country.name"></span></label></li>
+					<li><label><input type="radio" name="direction" value="from" data-bind="selected.direction"> Points from <span data-bind="selected.country.name"></span></label></li>
+				</ul>
 			</div>
 			
 			<div id="map">
