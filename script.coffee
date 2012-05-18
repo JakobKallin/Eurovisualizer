@@ -96,8 +96,9 @@ bind_country_nodes = () ->
 	for name, country of App.countries
 		node = document.getElementById(country.code)
 		country_path = "countries.#{country.code}"
-		node.setAttribute('data-event-click', "#{country_path}.click")
-		node.setAttribute('data-bind-class', "#{country_path}.className")
+		node.setAttribute('data-context', country_path)
+		node.setAttribute('data-event-click', 'click')
+		node.setAttribute('data-bind-class', 'className')
 		# Enable binding to the class attribute with this hack.
 		node.__defineSetter__('className', (value) -> @setAttribute('class', value))
 
