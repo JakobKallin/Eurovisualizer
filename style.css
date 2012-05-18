@@ -31,13 +31,13 @@ path.selected, g.selected path {
 	opacity: 1.0 !important;
 }
 
-svg .participant:hover,
-svg g.participant:hover path{
+svg .in-eurovision:hover,
+svg g.in-eurovision:hover path{
 	cursor: pointer;
 }
 
-svg .participant:hover,
-svg g.participant:hover path {
+svg .in-eurovision:hover,
+svg g.in-eurovision:hover path {
 	opacity: 0.8;
 }
 
@@ -65,9 +65,9 @@ svg g.participant:hover path {
 }
 
 .selected, .selected path { fill: hsl(120, 60%, 50%) !important; border-color: hsl(120, 60%, 50%); }
-.not-in-event, .not-in-event path { border-color: hsl(300, 100%, 25%); }
-.selected.not-in-event, .selected.not-in-event { fill: hsl(300, 100%, 25%) !important; }
-.not-in-event { margin-bottom: 1em !important; }
+.non-contestant, .non-contestant path { border-color: hsl(300, 100%, 25%); }
+.selected.non-contestant, .selected.non-contestant { fill: hsl(300, 100%, 25%) !important; }
+.non-contestant { margin-bottom: 1em !important; }
 .points-12, .points-12 path { border-color: hsl(220, 100%, 25%); fill: hsl(220, 100%, 25%) !important; }
 .points-10, .points-10 path { border-color: hsl(220, 100%, 35%); fill: hsl(220, 100%, 35%) !important; }
 .points-8, .points-8 path { border-color: hsl(220, 100%, 45%); fill: hsl(220, 100%, 45%) !important; }

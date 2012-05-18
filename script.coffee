@@ -64,31 +64,33 @@ class Event extends Batman.Model
 
 class Country extends Batman.Model
 	constructor: (@name, @code) ->
-	@accessor 'participates', () ->
-		return this in App.get('selected').get('event').get('donors')
 	click: () ->
 		App.set('selected_country_code', @code)
+	@accessor 'participates', () ->
+		this in App.get('selected').get('event').get('donors')
+	@accessor 'competes', () ->
+		this in App.get('selected').get('event').get('recipients')
+	@accessor 'is_selected', () ->
+		this is App.get('selected').get('country')
 	@accessor 'className', () ->
 		classes = []
+		classes.push('in-eurovision')
 		
-		if App.get('countries')[@code]
-			classes.push('participant')
-		
-		if this in App.get('selected').get('event').recipients
-			classes.push('in-event')
+		if this.get('competes')
+			classes.push('contestant')
 		else
-			classes.push('not-in-event')
+			classes.push('non-contestant')
 		
-		if this is App.get('selected').get('country')
+		if this.get('is_selected')
 			classes.push('selected')
+		
+		recipient = App.get('selected').get('country').code
+		event = App.get('selected').get('event')
+		if event.points.to[recipient] and event.points.to[recipient][@code]?
+			point = event.points.to[recipient][@code]
 		else
-			recipient = App.get('selected').get('country').code
-			event = App.get('selected').get('event')
-			if event.points.to[recipient] and event.points.to[recipient][@code]?
-				point = event.points.to[recipient][@code]
-			else
-				point = 0
-			classes.push("points-#{point}")
+			point = 0
+		classes.push("points-#{point}")
 		
 		return classes.join(' ')
 
