@@ -1,7 +1,9 @@
+
+
 /* Controls */
 
 body {
-	font-family: sans-serif;
+	font-family: "Segoe UI", sans-serif;
 }
 
 select {
@@ -13,6 +15,7 @@ select {
 #map {
 	width: 790px;
 	padding: 5px;
+	/* Positioned so that legend can be absolutely positioned. */
 	position: relative;
 }
 svg { width: 100%; }
@@ -39,3 +42,37 @@ svg .non-selected:hover,
 svg g.non-selected:hover path {
 	fill: hsl(0, 0%, 80%);
 }
+
+/* Legend */
+
+#legend {
+	position: absolute;
+	left: 0.5em;
+	bottom: 0.5em;
+	padding-left: 0;
+	list-style-type: none;
+}
+
+#legend li {
+	font-weight: bold;
+	margin: 0.25em 0;
+	line-height: 1em;
+}
+
+#legend li[class|="points"] {
+	border-style: solid;
+	border-width: 0;
+	border-left-width: 2em;
+	padding-left: 0.5em;
+}
+
+.points-12 { border-color: hsl(220, 100%, 25%); }
+.points-10 { border-color: hsl(220, 100%, 35%); }
+.points-8 { border-color: hsl(220, 100%, 45%); }
+.points-7 { border-color: hsl(220, 100%, 55%); }
+.points-6 { border-color: hsl(220, 100%, 60%); }
+.points-5 { border-color: hsl(220, 100%, 65%); }
+.points-4 { border-color: hsl(220, 100%, 70%); }
+.points-3 { border-color: hsl(220, 100%, 75%); }
+.points-2 { border-color: hsl(220, 100%, 80%); }
+.points-1 { border-color: hsl(220, 100%, 85%); }
