@@ -28,14 +28,15 @@ country_names = {
 	'lt': 'Lithuania',
 	'mt': 'Malta',
 	'md': 'Moldova',
+	'mc': 'Monaco',
 	'me': 'Montenegro',
 	'no': 'Norway',
 	'pl': 'Poland',
 	'pt': 'Portugal',
 	'ro': 'Romania',
-	'rs': 'Serbia',
 	'ru': 'Russia',
 	'sm': 'San Marino',
+	'rs': 'Serbia',
 	'sk': 'Slovakia',
 	'si': 'Slovenia',
 	'es': 'Spain',
@@ -121,7 +122,7 @@ unique_countries = (events) ->
 	return countries
 
 load_events = (signal_events_loaded) ->
-	years = [2009..2011]
+	years = [1998..2011]
 	events = {}
 	events_loaded = 0
 	events_to_load = years.length
