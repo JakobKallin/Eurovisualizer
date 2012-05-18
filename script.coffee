@@ -50,6 +50,11 @@ country_names = {
 
 class App extends Batman.App
 	@global yes
+	@root 'map#index'
+
+class App.MapController extends Batman.Controller
+	index: ->
+		@render false
 
 class Selected extends Batman.Model
 	@accessor 'event', () ->
