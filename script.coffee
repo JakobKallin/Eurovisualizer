@@ -62,7 +62,7 @@ class Country extends Batman.Model
 	click: () ->
 		App.set('selected_country_code', @code)
 	@accessor 'className', () ->
-		if @code == App.get('selected_country_code')
+		if @code is App.get('selected_country_code')
 			'selected'
 		else
 			'non-selected'
