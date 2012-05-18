@@ -1,10 +1,26 @@
-#map { width: 790px; padding: 5px; position: relative; }
+/* Controls */
+
+body {
+	font-family: sans-serif;
+}
+
+select {
+	font-size: 150%;
+}
+
+/* Map */
+
+#map {
+	width: 790px;
+	padding: 5px;
+	position: relative;
+}
 svg { width: 100%; }
 svg * { fill: none; }
 
 svg path {
-	fill: rgb(192, 192, 192);
-	stroke: rgb(255, 255, 255);
+	fill: hsl(0, 0%, 75%);
+	stroke: hsl(0, 0%, 100%);
 	stroke-width: 16;
 }
 
@@ -21,5 +37,5 @@ svg g.non-selected:hover path {
 
 svg .non-selected:hover,
 svg g.non-selected:hover path {
-	opacity: 0.8;
+	fill: hsl(0, 0%, 80%);
 }
