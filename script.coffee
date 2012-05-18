@@ -57,6 +57,10 @@ class Selected extends Batman.Model
 	@accessor 'country', () ->
 		country_code = App.get('selected_country_code')
 		country = App.get('countries')[country_code]
+	@accessor 'donor_mode', () ->
+		@get('direction') is 'from'
+	@accessor 'recipient_mode', () ->
+		@get('direction') is 'to'
 App.set('selected', new Selected())
 
 class Event extends Batman.Model
