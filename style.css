@@ -1,5 +1,3 @@
-
-
 /* Controls */
 
 body {
@@ -21,23 +19,21 @@ select {
 svg { width: 100%; }
 svg * { fill: none; }
 
-svg path {
+path, g {
 	fill: hsl(0, 0%, 75%);
 	stroke: hsl(0, 0%, 100%);
 	stroke-width: 16;
 }
 
-path.selected, g.selected path {
+path.selected, g.selected {
 	opacity: 1.0 !important;
 }
 
-svg .in-eurovision:hover,
-svg g.in-eurovision:hover path{
+.in-eurovision:hover {
 	cursor: pointer;
 }
 
-svg .in-eurovision:hover,
-svg g.in-eurovision:hover path {
+.in-eurovision:hover {
 	opacity: 0.8;
 }
 
@@ -64,17 +60,22 @@ svg g.in-eurovision:hover path {
 	padding-left: 0.5em;
 }
 
-.selected, .selected path { fill: hsl(120, 60%, 50%) !important; border-color: hsl(120, 60%, 50%); }
-.non-contestant, .non-contestant path { border-color: hsl(300, 100%, 25%); }
+g path {
+	fill: inherit;
+	opacity: inherit;
+}
+
+.selected { fill: hsl(120, 60%, 50%) !important; border-color: hsl(120, 60%, 50%); }
+.non-contestant { border-color: hsl(300, 100%, 25%); }
 .selected.non-contestant, .selected.non-contestant { fill: hsl(300, 100%, 25%) !important; }
 .non-contestant { margin-bottom: 1em !important; }
-.points-12, .points-12 path { border-color: hsl(220, 100%, 25%); fill: hsl(220, 100%, 25%) !important; }
-.points-10, .points-10 path { border-color: hsl(220, 100%, 35%); fill: hsl(220, 100%, 35%) !important; }
-.points-8, .points-8 path { border-color: hsl(220, 100%, 45%); fill: hsl(220, 100%, 45%) !important; }
-.points-7, .points-7 path { border-color: hsl(220, 100%, 55%); fill: hsl(220, 100%, 55%) !important; }
-.points-6, .points-6 path { border-color: hsl(220, 100%, 60%); fill: hsl(220, 100%, 60%) !important; }
-.points-5, .points-5 path { border-color: hsl(220, 100%, 65%); fill: hsl(220, 100%, 65%) !important; }
-.points-4, .points-4 path { border-color: hsl(220, 100%, 70%); fill: hsl(220, 100%, 70%) !important; }
-.points-3, .points-3 path { border-color: hsl(220, 100%, 75%); fill: hsl(220, 100%, 75%) !important; }
-.points-2, .points-2 path { border-color: hsl(220, 100%, 80%); fill: hsl(220, 100%, 80%) !important; }
-.points-1, .points-1 path { border-color: hsl(220, 100%, 85%); fill: hsl(220, 100%, 85%) !important; }
+.points-12 { border-color: hsl(220, 100%, 25%); fill: hsl(220, 100%, 25%) !important; }
+.points-10 { border-color: hsl(220, 100%, 35%); fill: hsl(220, 100%, 35%) !important; }
+.points-8 { border-color: hsl(220, 100%, 45%); fill: hsl(220, 100%, 45%) !important; }
+.points-7 { border-color: hsl(220, 100%, 55%); fill: hsl(220, 100%, 55%) !important; }
+.points-6 { border-color: hsl(220, 100%, 60%); fill: hsl(220, 100%, 60%) !important; }
+.points-5 { border-color: hsl(220, 100%, 65%); fill: hsl(220, 100%, 65%) !important; }
+.points-4 { border-color: hsl(220, 100%, 70%); fill: hsl(220, 100%, 70%) !important; }
+.points-3 { border-color: hsl(220, 100%, 75%); fill: hsl(220, 100%, 75%) !important; }
+.points-2 { border-color: hsl(220, 100%, 80%); fill: hsl(220, 100%, 80%) !important; }
+.points-1 { border-color: hsl(220, 100%, 85%); fill: hsl(220, 100%, 85%) !important; }
