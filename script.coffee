@@ -50,22 +50,47 @@ country_names = {
 class App extends Batman.App
 	@global yes
 
+class Selected extends Batman.Model
+	@accessor 'event', () ->
+		event_title = App.get('selected_event_title')
+		event = App.get('events')[event_title]
+	@accessor 'country', () ->
+		country_code = App.get('selected_country_code')
+		country = App.get('countries')[country_code]
+App.set('selected', new Selected())
+
 class Event extends Batman.Model
 	constructor: (@title, @recipients, @donors, @points) ->
 
 class Country extends Batman.Model
 	constructor: (@name, @code) ->
 	@accessor 'participates', () ->
-		event_title = App.get('selected_event_title')
-		event = App.get('events')[event_title]
-		return this in event.get('donors')
+		return this in App.get('selected').get('event').get('donors')
 	click: () ->
 		App.set('selected_country_code', @code)
 	@accessor 'className', () ->
-		if @code is App.get('selected_country_code')
-			'selected'
+		classes = []
+		
+		if App.get('countries')[@code]
+			classes.push('participant')
+		
+		if this in App.get('selected').get('event').recipients
+			classes.push('in-event')
 		else
-			'non-selected'
+			classes.push('not-in-event')
+		
+		if this is App.get('selected').get('country')
+			classes.push('selected')
+		else
+			recipient = App.get('selected').get('country').code
+			event = App.get('selected').get('event')
+			if event.points.to[recipient] and event.points.to[recipient][@code]?
+				point = event.points.to[recipient][@code]
+			else
+				point = 0
+			classes.push("points-#{point}")
+		
+		return classes.join(' ')
 
 bind_country_nodes = () ->
 	for name, country of App.countries

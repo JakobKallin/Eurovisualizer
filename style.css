@@ -28,19 +28,17 @@ svg path {
 }
 
 path.selected, g.selected path {
-	fill: hsl(120, 60%, 50%);
+	opacity: 1.0 !important;
 }
 
-svg .selected:hover,
-svg .non-selected:hover,
-svg g.selected:hover path,
-svg g.non-selected:hover path {
+svg .participant:hover,
+svg g.participant:hover path{
 	cursor: pointer;
 }
 
-svg .non-selected:hover,
-svg g.non-selected:hover path {
-	fill: hsl(0, 0%, 80%);
+svg .participant:hover,
+svg g.participant:hover path {
+	opacity: 0.8;
 }
 
 /* Legend */
@@ -59,20 +57,24 @@ svg g.non-selected:hover path {
 	line-height: 1em;
 }
 
-#legend li[class|="points"] {
+#legend li {
 	border-style: solid;
 	border-width: 0;
 	border-left-width: 2em;
 	padding-left: 0.5em;
 }
 
-.points-12 { border-color: hsl(220, 100%, 25%); }
-.points-10 { border-color: hsl(220, 100%, 35%); }
-.points-8 { border-color: hsl(220, 100%, 45%); }
-.points-7 { border-color: hsl(220, 100%, 55%); }
-.points-6 { border-color: hsl(220, 100%, 60%); }
-.points-5 { border-color: hsl(220, 100%, 65%); }
-.points-4 { border-color: hsl(220, 100%, 70%); }
-.points-3 { border-color: hsl(220, 100%, 75%); }
-.points-2 { border-color: hsl(220, 100%, 80%); }
-.points-1 { border-color: hsl(220, 100%, 85%); }
+.selected, .selected path { fill: hsl(120, 60%, 50%) !important; border-color: hsl(120, 60%, 50%); }
+.not-in-event, .not-in-event path { border-color: hsl(300, 100%, 25%); }
+.selected.not-in-event, .selected.not-in-event { fill: hsl(300, 100%, 25%) !important; }
+.not-in-event { margin-bottom: 1em !important; }
+.points-12, .points-12 path { border-color: hsl(220, 100%, 25%); fill: hsl(220, 100%, 25%) !important; }
+.points-10, .points-10 path { border-color: hsl(220, 100%, 35%); fill: hsl(220, 100%, 35%) !important; }
+.points-8, .points-8 path { border-color: hsl(220, 100%, 45%); fill: hsl(220, 100%, 45%) !important; }
+.points-7, .points-7 path { border-color: hsl(220, 100%, 55%); fill: hsl(220, 100%, 55%) !important; }
+.points-6, .points-6 path { border-color: hsl(220, 100%, 60%); fill: hsl(220, 100%, 60%) !important; }
+.points-5, .points-5 path { border-color: hsl(220, 100%, 65%); fill: hsl(220, 100%, 65%) !important; }
+.points-4, .points-4 path { border-color: hsl(220, 100%, 70%); fill: hsl(220, 100%, 70%) !important; }
+.points-3, .points-3 path { border-color: hsl(220, 100%, 75%); fill: hsl(220, 100%, 75%) !important; }
+.points-2, .points-2 path { border-color: hsl(220, 100%, 80%); fill: hsl(220, 100%, 80%) !important; }
+.points-1, .points-1 path { border-color: hsl(220, 100%, 85%); fill: hsl(220, 100%, 85%) !important; }
