@@ -28,25 +28,28 @@ label {
 svg { width: 100%; }
 svg * { fill: none; }
 
+/* Default country appearance. */
 path, g {
-	fill: hsl(0, 0%, 75%);
+	fill: hsl(0, 0%, 75%); 
 	stroke: hsl(0, 0%, 100%);
 	stroke-width: 16;
 }
 
-path.selected, g.selected {
-	opacity: 1.0 !important;
+/* Kaliningrad and Russia proper inherit fill from containing group. */
+g path {
+	fill: inherit;
 }
 
+/* Highlight on mouseover set as opacity because the country's color varies depending on the context. */
 .in-eurovision:hover {
 	cursor: pointer;
-}
-
-.in-eurovision:hover {
 	opacity: 0.8;
 }
 
-/* Legend */
+/* Selected countries do not highlight on mouseover. */
+svg .selected {
+	opacity: 1.0 !important;
+}
 
 #legend {
 	position: absolute;
@@ -60,23 +63,17 @@ path.selected, g.selected {
 	font-weight: bold;
 	margin: 0.25em 0;
 	line-height: 1em;
-}
-
-#legend li {
 	border-style: solid;
 	border-width: 0;
 	border-left-width: 2em;
 	padding-left: 0.5em;
 }
 
-g path {
-	fill: inherit;
-}
+.selected { border-color: hsl(120, 60%, 50%); fill: hsl(120, 60%, 50%) !important; }
 
-.selected { fill: hsl(120, 60%, 50%) !important; border-color: hsl(120, 60%, 50%); }
-.non-contestant { border-color: hsl(300, 100%, 25%); }
-.selected.non-contestant, .selected.non-contestant { fill: hsl(300, 100%, 25%) !important; }
-.non-contestant { margin-bottom: 1em !important; }
+.selected.non-contestant { fill: hsl(300, 100%, 25%) !important; }
+.non-contestant { border-color: hsl(300, 100%, 25%); margin-bottom: 1em !important; }
+
 .points-12 { border-color: hsl(220, 100%, 25%); fill: hsl(220, 100%, 25%) !important; }
 .points-10 { border-color: hsl(220, 100%, 35%); fill: hsl(220, 100%, 35%) !important; }
 .points-8 { border-color: hsl(220, 100%, 45%); fill: hsl(220, 100%, 45%) !important; }
