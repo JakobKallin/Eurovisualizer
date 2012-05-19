@@ -71,7 +71,6 @@ path.selected, g.selected {
 
 g path {
 	fill: inherit;
-	opacity: inherit;
 }
 
 .selected { fill: hsl(120, 60%, 50%) !important; border-color: hsl(120, 60%, 50%); }
