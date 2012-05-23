@@ -76,6 +76,8 @@ class Country extends Batman.Model
 	constructor: (@name, @code) ->
 	click: () ->
 		App.set('selected_country_code', @code)
+	@accessor 'flag_path', () ->
+		"flags/#{@code}.svg"
 	@accessor 'participates', () ->
 		this in App.get('selected').get('event').get('donors')
 	@accessor 'competes', () ->
