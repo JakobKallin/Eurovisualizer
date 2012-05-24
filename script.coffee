@@ -128,20 +128,18 @@ unique_countries = (events) ->
 			countries.push(country) unless country in countries
 	return countries
 
-load_events = (signal_events_loaded) ->
+load_events = (signal_events_parsed) ->
 	years = [1998..2011]
 	events = {}
-	events_loaded = 0
-	events_to_load = years.length
 	countries = {}
-
-	load_event = (year) ->
-		filename = "years/#{year}.json"
-		jQuery.get(filename, on_event_loaded, 'json')
-
-	on_event_loaded = (data) ->
-		title = "#{data.year} Final"
-		final = data.final
+	
+	on_years_loaded = (years) ->
+		parse_year(year) for year in years
+		signal_events_parsed(events, countries)
+	
+	parse_year = (year) ->
+		title = "#{year.year} Final"
+		final = year.final
 		for code in final.donors
 			name = country_names[code]
 			countries[code] = new Country(name, code) unless countries[code]?
@@ -151,13 +149,11 @@ load_events = (signal_events_loaded) ->
 		
 		event = new Event(title, recipients, donors, final.points)
 		events[title] = event
-		events_loaded += 1
-		if events_loaded == events_to_load
-			signal_events_loaded(events, countries)
-			
-	load_event(year) for year in years
+	
+	filename = 'years.json'
+	jQuery.get(filename, on_years_loaded, 'json')
 
-on_events_loaded = (events, countries) ->
+on_events_parsed = (events, countries) ->
 	App.set('events', events)
 	sorted_events = (event for title, event of events).sort((a, b) -> b.title.localeCompare(a.title))
 	App.set('sorted_events', sorted_events)
@@ -175,6 +171,6 @@ on_events_loaded = (events, countries) ->
 	App.run()
 
 start = () ->
-	load_events(on_events_loaded)
+	load_events(on_events_parsed)
 	
 start()
