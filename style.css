@@ -59,7 +59,7 @@ img.flag {
 
 #legend {
 	position: absolute;
-	right: 0;
+	left: 0;
 	bottom: 0;
 	width: 15em;
 	margin: 1em;
