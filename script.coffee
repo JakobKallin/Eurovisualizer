@@ -129,7 +129,7 @@ unique_countries = (events) ->
 	return countries
 
 load_events = (signal_events_parsed) ->
-	years = [1998..2011]
+	years = [1998 .. 2012]
 	events = {}
 	countries = {}
 	
