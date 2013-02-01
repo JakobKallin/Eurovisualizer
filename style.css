@@ -8,13 +8,17 @@ html, body {
 	font-family: "Segoe UI", sans-serif;
 }
 
+#interface {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 18em;
+	margin: 2em;
+}
+
 /* Header */
 
 #header {
-	position: absolute;
-	left: 0;
-	top: 0;
-	margin: 2em;
 	font-size: 1em;
 }
 
@@ -23,14 +27,6 @@ h1 {
 }
 
 /* Controls */
-
-#controls {
-	position: absolute;
-	left: 0;
-	top: 4em;
-	width: 18em;
-	margin: 2em;
-}
 
 select {
 	display: block;
@@ -58,11 +54,6 @@ img.flag {
 /* Legend */
 
 #legend {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 15em;
-	margin: 1em;
 	padding: 0;
 	list-style-type: none;
 }
