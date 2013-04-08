@@ -171,6 +171,10 @@ on_events_parsed = (events, countries) ->
 	App.run()
 
 start = () ->
-	load_events(on_events_parsed)
+	# Browser detection is generally bad practice, but this is only temporary until a new version has been implemented.
+	if navigator.appName.indexOf('Internet Explorer') == -1
+		load_events(on_events_parsed)
+	else
+		alert 'Unfortunately, Internet Explorer does not support Eurovisualizer. It is known to work in Google Chrome, Mozilla Firefox, and Opera.'
 	
 start()
