@@ -1,0 +1,63 @@
+<!doctype html>
+<html data-ng-app="Euroquiz">
+	<head>
+		<meta charset="utf-8">
+		<title>Euroquiz</title>
+		<link rel="stylesheet" href="style.css">
+		
+		<script src="libraries/angular.js"></script>
+		<script src="source/extensions.js"></script>
+		<script>
+			var Euroquiz = {};
+		</script>
+		<script src="source/QuestionController.js"></script>
+		<script src="source/Video.js"></script>
+		<script src="source/eurovision.js"></script>
+		<script>
+			var module = angular.module('Euroquiz', []);
+			module.directive('eurovisionVideo', Euroquiz.Video);
+			module.service('eurovision', function() {
+				return Euroquiz.eurovision;
+			});
+		</script>
+	</head>
+	<body data-ng-controller="Euroquiz.QuestionController">
+		<eurovision-video
+			class="video"
+			data-video="question.videoID"
+			data-mask="!state.guess"
+			data-visible="state.showVideo"></eurovision-video><!--
+		--><div class="controls">
+			<ul class="settings">
+				<li>
+					<input
+						id="show-video"
+						type="checkbox"
+						data-ng-model="state.showVideo"><!--
+					--><label for="show-video">Show Video</label>
+				</li>
+			</ul>
+			<ul class="points">
+				<li class="correct">{{state.correct}}</li><!--
+				--><li class="incorrect">{{state.incorrect}}</li>
+			</ul>
+			<ul class="options">
+				<li data-ng-repeat="option in question.options">
+					<button
+						type="button"
+						data-ng-disabled="state.guess"
+						data-ng-click="giveAnswer(option)"
+						data-ng-class="optionClass(option)">{{option}}</button>
+				</li>
+			</ul>
+			<ul class="actions">
+				<li>
+					<button
+						type="button"
+						data-ng-disabled="!state.guess"
+						data-ng-click="proceed()">Next</button>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
