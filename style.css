@@ -19,3 +19,15 @@ svg path {
 svg path:hover {
 	opacity: 0.8;
 }
+
+.red {
+	fill: red;
+}
+
+.blue {
+	fill: blue;
+}
+
+.purple {
+	fill: purple;
+}
