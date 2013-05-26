@@ -1,4 +1,4 @@
-angular.module('europe', []).directive('europe', function() {
+angular.module('eurovisualizer').directive('europe', function() {
 	return {
 		restrict: 'E',
 		templateUrl: 'source/europe.svg',

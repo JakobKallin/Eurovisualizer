@@ -1,1 +1,1 @@
-angular.module('eurovisualizer', ['europe']);
+angular.module('eurovisualizer', []);
