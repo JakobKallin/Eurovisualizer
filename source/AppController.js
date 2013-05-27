@@ -36,21 +36,20 @@ angular.module('eurovisualizer').controller('AppController', function($scope, $h
 		var country = $scope.countries[countryCode];
 		var selectedCountry = $scope.selected.country;
 		var direction = $scope.selected.direction;
-		var labels = [];
+		var labels = {
+			'selected': country === selectedCountry,
+			'in-contest': country.votes(year),
+			'in-final': country.competes(year)
+		};
 		
-		if ( country === selectedCountry ) {
-			labels.push('selected');
-		} else if ( direction === 'to' && country.votes(year) ) {
-			labels.push('points-' + country.pointsTo(selectedCountry, year));
+		if ( direction === 'to' && country.votes(year) ) {
+			var points = country.pointsTo(selectedCountry, year);
 		} else if ( direction === 'from' && country.competes(year) ) {
-			labels.push('points-' + country.pointsFrom(selectedCountry, year));
+			var points = country.pointsFrom(selectedCountry, year);
 		}
 		
-		if ( country.votes(year) ) {
-			labels.push('in-contest');
-		}
-		if ( country.competes(year) ) {
-			labels.push('in-final');
+		if ( points !== undefined ) {
+			labels['points-' + points] = true;
 		}
 		
 		return labels;
