@@ -10,15 +10,15 @@
 		<script src="source/AppController.js"></script>
 	</head>
 	<body>
-		<select data-ng-model="selected.year" data-ng-options="y.year for y in years"></select>
+		<select data-ng-model="selected.year" data-ng-options="y for y in years"></select>
 		<ul>
 			<li>
 				<input type="radio" name="direction" value="to" data-ng-model="selected.direction" id="direction-to">
-				<label for="direction-to">Points to {{selected.country}}</label>
+				<label for="direction-to">Points to {{selected.country.code}}</label>
 			</li>
 			<li>
 				<input type="radio" name="direction" value="from" data-ng-model="selected.direction" id="direction-from">
-				<label for="direction-from">Points from {{selected.country}}</label>
+				<label for="direction-from">Points from {{selected.country.code}}</label>
 			</li>
 		</ul>
 		<europe data-ng-model="labels"></europe>

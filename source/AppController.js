@@ -1,57 +1,58 @@
 angular.module('eurovisualizer').controller('AppController', function($scope, $http) {
-	$scope.years = [];
-	$scope.selected = {
-		year: null,
-		country: 'se',
-		direction: 'to'
-	};
-	$scope.countries = {
-		dk: 'Denmark',
-		fi: 'Finland',
-		is: 'Iceland',
-		no: 'Norway',
-		se: 'Sweden'
-	};
-	
-	$http.get('source/years.json')
-	.success(function(newYears) {
-		$scope.years = newYears;
-		$scope.selected.year = newYears.last;
+	$http.get('source/years.json').success(function(stats) {
+		$scope.years = Object.keys(stats).sort();
+		$scope.selected.year = $scope.years.last;
+		
+		$scope.countries = {};
+		eurovisualizer.countryCodes.forEach(function(code) {
+			var country = new eurovisualizer.Country(code, stats);
+			$scope.countries[code] = country;
+			$scope.selected.country = country;
+		});
 	});
 	
-	$scope.directions = {
-		to: function(selected, other, event) {
-			var recipient = selected;
-			var donor = other;
-			return event.countries[donor].points.to[recipient];
-		},
-		from: function(selected, other, event) {
-			return this.to(other, selected, event);
-		}
+	$scope.selected = {
+		year: null,
+		country: null,
+		direction: 'to'
 	};
 	
 	$scope.labels = {};
 	
-	Object.keys($scope.countries).forEach(function(country) {
+	eurovisualizer.countryCodes.forEach(function(country) {
 		Object.defineProperty($scope.labels, country, {
 			get: function() {
-				return countryLabel(country);
+				return $scope.countryLabel(country);
 			}
 		});
 	});
 	
-	function countryLabel(country) {
+	$scope.countryLabel = function(countryCode) {
 		if ( !$scope.selected.year ) {
 			return;
 		}
-		if ( country === $scope.selected.country ) {
-			return 'selected';
-		} else {
-			var selected = $scope.selected.country;
-			var direction = $scope.selected.direction;
-			var year = $scope.selected.year;
-			var event = year.final;
-			return 'points-' + $scope.directions[direction](selected, country, event);
+		
+		var year = $scope.selected.year;
+		var country = $scope.countries[countryCode];
+		var selectedCountry = $scope.selected.country;
+		var direction = $scope.selected.direction;
+		var labels = [];
+		
+		if ( country === selectedCountry ) {
+			labels.push('selected');
+		} else if ( direction === 'to' && country.votes(year) ) {
+			labels.push('points-' + country.pointsTo(selectedCountry, year));
+		} else if ( direction === 'from' && country.competes(year) ) {
+			labels.push('points-' + country.pointsFrom(selectedCountry, year));
 		}
-	}
+		
+		if ( country.votes(year) ) {
+			labels.push('in-contest');
+		}
+		if ( country.competes(year) ) {
+			labels.push('in-final');
+		}
+		
+		return labels;
+	};
 });
