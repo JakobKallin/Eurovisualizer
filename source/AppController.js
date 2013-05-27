@@ -54,4 +54,8 @@ angular.module('eurovisualizer').controller('AppController', function($scope, $h
 		
 		return labels;
 	};
+	
+	$scope.onCountryClick = function(countryCode) {
+		$scope.selected.country = $scope.countries[countryCode];
+	};
 });

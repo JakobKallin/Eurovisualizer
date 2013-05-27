@@ -4,7 +4,8 @@ angular.module('eurovisualizer').directive('europe', function() {
 		templateUrl: 'source/europe.svg',
 		replace: true,
 		scope: {
-			labels: '=ngModel'
+			labels: '=ngModel',
+			countryClick: '=countryClick'
 		},
 		compile: function($svg, attrs) {
 			var svg = $svg[0];
@@ -23,6 +24,18 @@ angular.module('eurovisualizer').directive('europe', function() {
 					}
 				});
 			});
+			
+			return function(scope, $svg) {
+				var svg = $svg[0];
+				var paths = svg.getElementsByTagName('path');
+				Array.prototype.forEach.call(paths, function(path) {
+					path.addEventListener('click', function() {
+						scope.$apply(function() {
+							scope.countryClick(path.id);
+						});
+					});
+				});
+			};
 		}
 	};
 });
