@@ -4,13 +4,13 @@ angular.module('eurovisualizer').directive('europe', function() {
 		templateUrl: 'source/europe.svg',
 		replace: true,
 		scope: {
-			classes: '=classes'
+			labels: '=ngModel'
 		},
 		compile: function($svg, attrs) {
 			var svg = $svg[0];
 			var paths = svg.getElementsByTagName('path');
 			Array.prototype.forEach.call(paths, function(path) {
-				path.dataset.ngClass = 'classes.' + path.id;
+				path.dataset.ngClass = 'labels.' + path.id;
 				
 				// Enable binding to SVG class.
 				Object.defineProperty(path, 'className', {

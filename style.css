@@ -20,14 +20,15 @@ svg path:hover {
 	opacity: 0.8;
 }
 
-.red {
-	fill: red;
-}
+.selected { fill: hsl(120, 60%, 50%); }
 
-.blue {
-	fill: blue;
-}
-
-.purple {
-	fill: purple;
-}
+.points-12 { fill: hsl(220, 100%, 25%); }
+.points-10 { fill: hsl(220, 100%, 35%); }
+.points-8 { fill: hsl(220, 100%, 45%); }
+.points-7 { fill: hsl(220, 100%, 55%); }
+.points-6 { fill: hsl(220, 100%, 60%); }
+.points-5 { fill: hsl(220, 100%, 65%); }
+.points-4 { fill: hsl(220, 100%, 70%); }
+.points-3 { fill: hsl(220, 100%, 75%); }
+.points-2 { fill: hsl(220, 100%, 80%); }
+.points-1 { fill: hsl(220, 100%, 85%); }

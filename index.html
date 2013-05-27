@@ -1,13 +1,26 @@
 <!doctype html>
-<html data-ng-app="eurovisualizer">
+<html data-ng-app="eurovisualizer" data-ng-controller="AppController">
 	<head>
 		<title>Eurovisualizer</title>
 		<link rel="stylesheet" href="style.css">
 		<script src="libraries/angular-1.0.7.js"></script>
+		<script src="source/extensions.js"></script>
 		<script src="source/eurovisualizer.js"></script>
 		<script src="source/europe.js"></script>
+		<script src="source/AppController.js"></script>
 	</head>
 	<body>
-		<europe></europe>
+		<select data-ng-model="selected.year" data-ng-options="y.year for y in years"></select>
+		<ul>
+			<li>
+				<input type="radio" name="direction" value="to" data-ng-model="selected.direction" id="direction-to">
+				<label for="direction-to">Points to {{selected.country}}</label>
+			</li>
+			<li>
+				<input type="radio" name="direction" value="from" data-ng-model="selected.direction" id="direction-from">
+				<label for="direction-from">Points from {{selected.country}}</label>
+			</li>
+		</ul>
+		<europe data-ng-model="labels"></europe>
 	</body>
 </html>
