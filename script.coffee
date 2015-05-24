@@ -2,6 +2,7 @@ country_names = {
 	'al': 'Albania',
 	'ad': 'Andorra',
 	'am': 'Armenia',
+	'au': 'Australia',
 	'at': 'Austria',
 	'az': 'Azerbaijan',
 	'by': 'Belarus',
